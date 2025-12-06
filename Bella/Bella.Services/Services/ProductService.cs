@@ -115,6 +115,8 @@ namespace Bella.Services.Services
         // Train a simple recommender using Matrix Factorization on (User, Product) implicit feedback
         public static void TrainRecommenderAtStartup(IServiceProvider serviceProvider)
         {
+
+            
             lock (_mlLock)
             {
                 if (_mlContext == null)

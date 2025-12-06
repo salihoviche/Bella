@@ -86,6 +86,14 @@ namespace Bella.Services.Services
                 query = query.Where(a => a.AppointmentDate <= search.AppointmentDateTo.Value);
             }
 
+            if (search.AppointmentDate.HasValue)
+            {
+                // Filter by exact date (ignoring time)
+                var date = search.AppointmentDate.Value.Date;
+                var dateNextDay = date.AddDays(1);
+                query = query.Where(a => a.AppointmentDate >= date && a.AppointmentDate < dateNextDay);
+            }
+
             if (!string.IsNullOrEmpty(search.FTS))
             {
                 query = query.Where(a => 

@@ -15,6 +15,7 @@ namespace Bella.Model.SearchObjects
         public decimal? MaxPrice { get; set; }
         public DateTime? AppointmentDateFrom { get; set; }
         public DateTime? AppointmentDateTo { get; set; }
+        public DateTime? AppointmentDate { get; set; }
     }
 }
 

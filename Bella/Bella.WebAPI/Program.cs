@@ -30,6 +30,7 @@ builder.Services.AddTransient<IReviewService, ReviewService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IOrderItemService, OrderItemService>();
 builder.Services.AddTransient<IAnalyticsService, AnalyticsService>();
+builder.Services.AddTransient<IHairdresserAnalyticsService, HairdresserAnalyticsService>();
 builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddTransient<ICartItemService, CartItemService>();
 
