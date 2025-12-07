@@ -1,0 +1,4 @@
+- Kreiranje skripte/migracije
+dotnet ef migrations add SeedInitialData --project .\Bella.Services --startup-project .\Bella.WebAPI
+- Builder za klase
+dart run build_runner build
