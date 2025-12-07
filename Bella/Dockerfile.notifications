@@ -1,0 +1,26 @@
+﻿
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+
+WORKDIR /src
+EXPOSE 80
+EXPOSE 443
+
+
+COPY ["Bella.Subscriber/Bella.Subscriber.csproj", "Bella.Subscriber/"]
+RUN dotnet restore "Bella.Subscriber/Bella.Subscriber.csproj"
+
+
+COPY . .
+WORKDIR "/src/Bella.Subscriber"
+RUN dotnet build "Bella.Subscriber.csproj" -c Release -o /app/build
+
+
+FROM build AS publish
+RUN dotnet publish "Bella.Subscriber.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+WORKDIR /app
+COPY --from=publish /app/publish .
+
+
+ENTRYPOINT ["dotnet", "Bella.Subscriber.dll"]
